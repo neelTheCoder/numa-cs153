@@ -57,7 +57,7 @@ and suffers severe temporal smearing and the curse of dimensionality — the stu
    neurologically true cortical pathways while preserving the depthwise temporal insights
    of the ENIGMA backbone.
 
-**The result that validates fNIRS (Table 1 of the paper):**
+**The result that validates fNIRS (Table 1):**
 
 | Architecture variant | Avg. accuracy | vs. chance |
 |---|---|---|
@@ -66,7 +66,7 @@ and suffers severe temporal smearing and the curse of dimensionality — the stu
 | ENIGMA + CHASEDOWN prior (no graph) | **2.93%** | *degrades to chance* |
 | **SGCN + CHASEDOWN (multimodal)** | **9.16%** | **3.3×** |
 
-**How this validates fNIRS — exactly as the paper explains it.** Naively multiplying EEG
+**How this validates fNIRS** Naively multiplying EEG
 by the fNIRS prior *hurt* the convolutional baseline (4.8% → 2.93%): a raw static spatial
 weight acts as **disruptive noise** inside a grid-based network with no mechanism to
 contextualize it. But once the **same** prior is coupled with the SGCN's physical
@@ -77,7 +77,7 @@ conclusion: **fNIRS's localized spatial benefit is real, but it can only be unlo
 explicitly modeling the scalp's non-Euclidean geometry.** fNIRS + EEG enables better
 brain decoding — provided the architecture respects cortical topology.
 
-Honesty note carried from the paper: absolute accuracies remain low because synchronous
+Honesty note: absolute accuracies remain low because synchronous
 fNIRS-EEG data is extremely scarce; the confusion matrices show occasional **catastrophic
 representation collapse** (e.g., predicting a single class) on a data-starved 36-class
 manifold. The contribution is *mechanistic proof*, not a finished decoder.
