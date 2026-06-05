@@ -1,0 +1,70 @@
+{
+  "n_channels": 64,
+  "n_times": 256,
+  "n_bands": 5,
+  "sample_rate": 256.0,
+  "window_sec": 1.0,
+  "bands": [
+    [
+      1.0,
+      4.0
+    ],
+    [
+      4.0,
+      8.0
+    ],
+    [
+      8.0,
+      13.0
+    ],
+    [
+      13.0,
+      30.0
+    ],
+    [
+      30.0,
+      40.0
+    ]
+  ],
+  "classes": [
+    "ax",
+    "bear",
+    "bottle_opener",
+    "broom",
+    "cat",
+    "chain_saw",
+    "cock",
+    "computer_mouse",
+    "corkscrew",
+    "cow",
+    "crab",
+    "crow",
+    "dog",
+    "donkey",
+    "duck",
+    "elephants",
+    "frog",
+    "hammer",
+    "hand_saw",
+    "kettle",
+    "keyboard",
+    "knife",
+    "lion",
+    "microwave",
+    "monkey",
+    "owl",
+    "pen",
+    "phone",
+    "pig",
+    "scissors",
+    "sheep",
+    "shovel",
+    "snake",
+    "tiger",
+    "toothbrash",
+    "vacuum_cleaner"
+  ],
+  "eval_max_windows": 96,
+  "artifact_thresh_v": 0.00015,
+  "checkpoint": "enigma_v6_fold2.pt"
+}

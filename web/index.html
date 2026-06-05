@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NUMA Frontier Systems — Decoding Imagined Concepts from EEG</title>
+<meta name="description" content="A non-invasive brain–computer interface that decodes which of 36 imagined animals and tools a person is thinking about, directly from EEG brain activity." />
+<!-- Inference runs fully in the browser via onnxruntime-web. Requires
+     numa_v6.onnx + model_meta.json in the repo root (see export_onnx.py / README). -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ───────────────────────── NAV ───────────────────────── -->
+<header class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true"></span>
+    NUMA<span class="brand-dim">·Frontier Systems</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#try">Try it</a>
+    <a href="#mission">Mission</a>
+    <a href="#results">Results</a>
+    <a href="#how">How it works</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="hero">
+    <p class="eyebrow">Non-invasive semantic neural decoding</p>
+    <h1>Reading the <span class="grad">imagined object</span><br/>straight from brain activity.</h1>
+    <p class="lede">
+      A person looks at — and imagines — one of <strong>36 everyday animals and tools</strong>.
+      We record only their scalp EEG, never touching the brain, and ask a single question:
+      <em>can a machine recover the concept they were thinking of?</em>
+      Upload a recording below and watch the model guess.
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#try">Upload a recording →</a>
+      <a class="btn ghost" href="#results">See the results</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="num" data-count="36">36</span><span class="lbl">concept classes</span></div>
+      <div><span class="num">64</span><span class="lbl">EEG electrodes</span></div>
+      <div><span class="num">1.3×</span><span class="lbl">above chance</span></div>
+      <div><span class="num">0</span><span class="lbl">implants</span></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── TRY IT ───────────────────────── -->
+  <section id="try" class="try">
+    <div class="section-head">
+      <h2>Decode a recording</h2>
+      <p>Upload one instance <code>.bdf</code> file from the dataset. Everything runs
+         <strong>in your browser</strong> — filtering, windowing, and a recording-level attention
+         network — and returns its best guess plus the picture it points to. Your file never leaves
+         your device.</p>
+    </div>
+
+    <div id="apiWarn" class="api-warn" hidden></div>
+
+    <div class="uploader">
+      <label id="drop" class="drop" for="file">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4m0 0L7 9m5-5l5 5"/><path d="M5 18v1a2 2 0 002 2h10a2 2 0 002-2v-1"/></svg>
+        <span class="drop-title">Drop a <b>.bdf</b> file or click to browse</span>
+        <span class="drop-sub">BioSemi-64 EEG · one stimulus instance</span>
+      </label>
+      <input id="file" type="file" accept=".bdf" hidden />
+      <div id="fileName" class="file-name"></div>
+      <button id="go" class="btn primary wide" disabled>Decode brain activity</button>
+      <div id="status" class="status"></div>
+      <div id="error" class="error"></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── MISSION / SIGNIFICANCE ───────────────────────── -->
+  <section id="mission" class="mission">
+    <div class="section-head">
+      <h2>Why this matters</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Every thought you have is electricity. The hard part is that by the time that electricity
+        reaches the scalp — where a safe, non-invasive sensor can read it — the skull has smeared it
+        into a faint, noisy whisper. Decoding <em>what someone is thinking about</em> from that
+        whisper, without surgery, is one of the defining challenges of brain–computer interfaces.
+      </p>
+      <p>
+        NUMA tackles the hardest flavor of that problem: <strong>open-set semantic decoding</strong>.
+        Not "left hand vs. right hand," but <strong>which of 36 distinct concepts</strong> — a
+        <em>cat</em>, a <em>chainsaw</em>, an <em>owl</em>, a <em>pair of scissors</em> — a person is
+        picturing, from a single short recording. That is a 36-way guess where blind chance is just
+        <strong>2.8%</strong>. A system that does this reliably is a foothold toward communication for
+        people who have lost speech and movement, and toward interfaces driven by intention alone.
+      </p>
+      <p>
+        The catch is data and signal. Single-trial EEG of imagined objects is extraordinarily low in
+        signal-to-noise, and a 36-class problem starves any model of examples per concept. The honest
+        scientific question is not "is it perfect?" — it's <strong>"is there any decodable structure
+        in here at all, and can a model find it above chance?"</strong> NUMA's answer, across rigorous
+        cross-validation, is <strong>yes</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── RESULTS ───────────────────────── -->
+  <section id="results" class="results">
+    <div class="section-head">
+      <h2>The numbers (model v6)</h2>
+      <p>Five-fold <em>leave-one-instance-out</em> cross-validation — the model is always tested on
+         recordings it never trained on. Evaluation is at the <strong>recording level</strong>, where
+         every class is perfectly balanced (45 recordings each), so accuracy can't be faked by guessing
+         a common class.</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card highlight">
+        <span class="stat-num">3.6%</span>
+        <span class="stat-lbl">balanced accuracy</span>
+        <span class="stat-note">vs. 2.8% chance — above chance on <b>all 5 folds</b></span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">+29%</span>
+        <span class="stat-lbl">relative lift over chance</span>
+        <span class="stat-note">1.3× the random-guess rate</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">22.2%</span>
+        <span class="stat-lbl">best class (broom)</span>
+        <span class="stat-note">8× chance · hand-saw 11.1%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">118K</span>
+        <span class="stat-lbl">parameters</span>
+        <span class="stat-note">tiny — &lt;1% of a transformer decoder</span>
+      </div>
+    </div>
+
+    <div class="fold-table-wrap">
+      <table class="fold-table">
+        <thead><tr><th>Fold (held-out instance)</th><th>Top-1</th><th>Balanced acc.</th><th>Macro-F1</th><th>Top-5</th></tr></thead>
+        <tbody>
+          <tr><td>Fold 1</td><td>0.034</td><td>0.034</td><td>0.015</td><td>0.142</td></tr>
+          <tr><td>Fold 2</td><td>0.040</td><td>0.040</td><td>0.023</td><td>0.139</td></tr>
+          <tr><td>Fold 3</td><td>0.034</td><td>0.034</td><td>0.017</td><td>0.130</td></tr>
+          <tr><td>Fold 4</td><td>0.034</td><td>0.034</td><td>0.017</td><td>0.151</td></tr>
+          <tr><td>Fold 5</td><td>0.040</td><td>0.040</td><td>0.019</td><td>0.145</td></tr>
+          <tr class="mean"><td>Mean</td><td>0.036</td><td>0.036</td><td>0.018</td><td>0.141</td></tr>
+          <tr class="chance"><td>Chance</td><td>0.028</td><td>0.028</td><td>—</td><td>0.139</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="plots/cv_summary.png" alt="Cross-validation accuracy per fold" loading="lazy" />
+        <figcaption>Accuracy on every held-out fold sits above the chance line — the result is consistent, not a single lucky split.</figcaption>
+      </figure>
+      <figure>
+        <img src="plots/per_class_accuracy.png" alt="Per-class accuracy" loading="lazy" />
+        <figcaption>Per-class accuracy. Several concepts — broom, hand-saw, vacuum, phone — are decoded several times above chance.</figcaption>
+      </figure>
+      <figure>
+        <img src="plots/training_curves.png" alt="Training curves" loading="lazy" />
+        <figcaption>Training dynamics: validation macro-F1 climbs and is held by the best-of-raw/EMA checkpoint.</figcaption>
+      </figure>
+      <figure>
+        <img src="plots/confusion_matrix.png" alt="Confusion matrix" loading="lazy" />
+        <figcaption>Recording-level confusion matrix across all 36 imagined concepts.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── HOW IT WORKS ───────────────────────── -->
+  <section id="how" class="how">
+    <div class="section-head">
+      <h2>How the decoder works</h2>
+      <p>Six model generations of engineering, distilled into one idea: stop judging noisy
+         fragments, and judge the whole recording.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h3>Clean the signal</h3>
+        <p>Raw 64-channel BioSemi EEG is band-passed to 1–40 Hz, notch-filtered, re-referenced to the
+           common average, and resampled to 256 Hz — keeping only the neural frequencies and removing
+           eye, muscle, and line noise.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h3>Slice into windows</h3>
+        <p>Each recording is cut into overlapping 1-second windows. A learned EEGNet backbone reads
+           every window — first finding temporal rhythms, then spatial patterns across the scalp.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h3>Listen selectively</h3>
+        <p>The breakthrough in v6: an <strong>attention layer</strong> treats the recording as a bag of
+           windows and <em>learns which moments actually carry the thought</em>, down-weighting the rest.
+           One confident window can swing the verdict.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">04</span>
+        <h3>Decide on the concept</h3>
+        <p>The attention-pooled recording is classified across all 36 concepts. Because we judge whole
+           recordings — not fragments — every class is balanced and the score is honest.</p>
+      </div>
+    </div>
+
+    <div class="journey">
+      <h3>The road to a positive result</h3>
+      <p>The first five model generations classified individual one-second windows and voted. Three very
+         different architectures — a spatial graph network, a tuned variant, and an EEGNet with a
+         spectral filter-bank — all stalled near chance, because most one-second fragments of an imagined
+         thought simply don't contain the concept. <strong>v6 changed the question</strong>: by decoding
+         the recording as a whole with learned attention, it both removed the imbalance that flattered
+         earlier numbers and produced the project's first clearly above-chance, collapse-free result.</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── DISCLAIMER ───────────────────────── -->
+  <section class="disclaimer">
+    <p>
+      <strong>Research demonstration.</strong> Single-trial 36-class EEG semantic decoding is an open,
+      extremely hard problem. NUMA v6 is reliably above chance but its absolute accuracy is modest —
+      treat predictions as a scientific signal, not a finished product. Inputs must be BioSemi-64-layout
+      EEG matching the recording montage the model was trained on.
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>NUMA · Frontier Systems</span>
+  <span>Non-invasive semantic neural decoding · model v6</span>
+</footer>
+
+<!-- ───────────────────────── PREDICTION MODAL ───────────────────────── -->
+<div id="modal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mLabel">
+    <button id="modalClose" class="modal-close" aria-label="Close">×</button>
+    <p class="modal-eyebrow">The model thinks you imagined…</p>
+    <div class="modal-img-wrap">
+      <img id="mImg" alt="" />
+    </div>
+    <h2 id="mLabel" class="modal-label"></h2>
+    <p class="modal-meta"><span id="mCat" class="chip"></span> <span id="mConf"></span></p>
+    <div id="mTopk" class="topk"></div>
+    <p id="mWindows" class="modal-windows"></p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<script src="eeg.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

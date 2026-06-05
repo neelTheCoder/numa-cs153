@@ -1,0 +1,383 @@
+
+============================================================
+  NUMA EEG Classifier  v6 (recording-level attention MIL over EEGNet windows)
+============================================================
+  Device          : cuda
+  Stimuli dir     : /home/neelahuja/cleaned_data/cleaned_data
+  Active subjects : 9  ['sub-01', 'sub-02', 'sub-03', 'sub-04', 'sub-06', 'sub-07', 'sub-09', 'sub-10', 'sub-11']
+  Channel weights : off
+  Window/Overlap  : 1.0s / 0.5s  (1.0–40.0 Hz)
+  Unit            : RECORDING (attention-MIL bag of windows)
+  Windows/bag     : train_k=24  eval_max=96
+  Batch (recs)    : train 96 / eval 8
+  Class balancing : classweight
+  Backbone        : EEGNet(16,2,32) encoder + bandpower=on → gated-attention MIL
+  Dropout         : 0.3   label-smooth 0.1
+  Train epochs    : 80  (early-stop patience 15)
+  LR (OneCycle)   : 0.001  warmup 0.15  wd 0.05
+  EMA decay       : 0.999  (ckpt = best-of raw/EMA)
+  Selection metric: macro-F1 (recording-level)
+  Cache dir       : .eeg_cache_v8
+  Folds           : 1-5 (full CV)
+============================================================
+
+
+── Fold 1  [test=instance1] ──
+    Building train set (1296 recordings) ...
+    Building test  set (324 recordings) ...
+    Train recordings: 1296 | Test recordings: 324
+    Train recordings/class: min=36 max=36 mean=36 (imbalance 1.0×)
+  Fold 1 train:   0%|[36m                                              [0m| 0/80 [00:00<?, ?ep/s][0m  Fold 1 train:   0%|[36m [0m| 0/80 [00:15<?, ?ep/s, best_f1=0.011, f1=0.011, src=raw, tr=0.03, v[0m  Fold 1 train:   1%|[36m [0m| 1/80 [00:15<19:48, 15.04s/ep, best_f1=0.011, f1=0.011, src=raw, tr[0m  Fold 1 train:   1%|[36m [0m| 1/80 [00:29<19:48, 15.04s/ep, best_f1=0.012, f1=0.012, src=ema, tr[0m  Fold 1 train:   2%|[36m [0m| 2/80 [00:29<18:49, 14.49s/ep, best_f1=0.012, f1=0.012, src=ema, tr[0m  Fold 1 train:   2%|[36m [0m| 2/80 [00:43<18:49, 14.49s/ep, best_f1=0.012, f1=0.008, src=ema, tr[0m  Fold 1 train:   4%|[36m [0m| 3/80 [00:43<18:19, 14.28s/ep, best_f1=0.012, f1=0.008, src=ema, tr[0m  Fold 1 train:   4%|[36m [0m| 3/80 [00:57<18:19, 14.28s/ep, best_f1=0.012, f1=0.008, src=ema, tr[0m  Fold 1 train:   5%|[36m [0m| 4/80 [00:57<18:05, 14.28s/ep, best_f1=0.012, f1=0.008, src=ema, tr[0m  Fold 1 train:   5%|[36m [0m| 4/80 [01:11<18:05, 14.28s/ep, best_f1=0.012, f1=0.009, src=ema, tr[0m  Fold 1 train:   6%|[36m [0m| 5/80 [01:11<17:53, 14.32s/ep, best_f1=0.012, f1=0.009, src=ema, tr[0m  Fold 1 train:   6%|[36m [0m| 5/80 [01:26<17:53, 14.32s/ep, best_f1=0.012, f1=0.012, src=ema, tr[0m  Fold 1 train:   8%|[36m [0m| 6/80 [01:26<17:44, 14.39s/ep, best_f1=0.012, f1=0.012, src=ema, tr[0m  Fold 1 train:   8%|[36m [0m| 6/80 [01:40<17:44, 14.39s/ep, best_f1=0.015, f1=0.015, src=raw, tr[0m  Fold 1 train:   9%|[36m [0m| 7/80 [01:40<17:33, 14.43s/ep, best_f1=0.015, f1=0.015, src=raw, tr[0m  Fold 1 train:   9%|[36m [0m| 7/80 [01:55<17:33, 14.43s/ep, best_f1=0.015, f1=0.014, src=raw, tr[0m  Fold 1 train:  10%|[36m [0m| 8/80 [01:55<17:20, 14.46s/ep, best_f1=0.015, f1=0.014, src=raw, tr[0m  Fold 1 train:  10%|[36m [0m| 8/80 [02:09<17:20, 14.46s/ep, best_f1=0.015, f1=0.010, src=raw, tr[0m  Fold 1 train:  11%|[36m [0m| 9/80 [02:09<17:07, 14.48s/ep, best_f1=0.015, f1=0.010, src=raw, tr[0m  Fold 1 train:  11%|[36m [0m| 9/80 [02:24<17:07, 14.48s/ep, best_f1=0.015, f1=0.009, src=raw, tr[0m  Fold 1 train:  12%|[36m▏[0m| 10/80 [02:24<16:55, 14.51s/ep, best_f1=0.015, f1=0.009, src=raw, t[0m  Fold 1 train:  12%|[36m▏[0m| 10/80 [02:39<16:55, 14.51s/ep, best_f1=0.015, f1=0.009, src=raw, t[0m  Fold 1 train:  14%|[36m▏[0m| 11/80 [02:39<16:49, 14.63s/ep, best_f1=0.015, f1=0.009, src=raw, t[0m  Fold 1 train:  14%|[36m▏[0m| 11/80 [02:54<16:49, 14.63s/ep, best_f1=0.015, f1=0.009, src=raw, t[0m  Fold 1 train:  15%|[36m▏[0m| 12/80 [02:54<16:41, 14.73s/ep, best_f1=0.015, f1=0.009, src=raw, t[0m  Fold 1 train:  15%|[36m▏[0m| 12/80 [03:08<16:41, 14.73s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  16%|[36m▏[0m| 13/80 [03:08<16:24, 14.70s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  16%|[36m▏[0m| 13/80 [03:23<16:24, 14.70s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  18%|[36m▏[0m| 14/80 [03:23<16:03, 14.60s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  18%|[36m▏[0m| 14/80 [03:37<16:03, 14.60s/ep, best_f1=0.015, f1=0.011, src=raw, t[0m  Fold 1 train:  19%|[36m▏[0m| 15/80 [03:37<15:46, 14.57s/ep, best_f1=0.015, f1=0.011, src=raw, t[0m  Fold 1 train:  19%|[36m▏[0m| 15/80 [03:52<15:46, 14.57s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  20%|[36m▏[0m| 16/80 [03:52<15:29, 14.52s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  20%|[36m▏[0m| 16/80 [04:06<15:29, 14.52s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  21%|[36m▏[0m| 17/80 [04:06<15:14, 14.52s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  21%|[36m▏[0m| 17/80 [04:21<15:14, 14.52s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  22%|[36m▏[0m| 18/80 [04:21<14:57, 14.48s/ep, best_f1=0.015, f1=0.012, src=raw, t[0m  Fold 1 train:  22%|[36m▏[0m| 18/80 [04:35<14:57, 14.48s/ep, best_f1=0.015, f1=0.008, src=raw, t[0m  Fold 1 train:  24%|[36m▏[0m| 19/80 [04:35<14:42, 14.47s/ep, best_f1=0.015, f1=0.008, src=raw, t[0m  Fold 1 train:  24%|[36m▏[0m| 19/80 [04:50<14:42, 14.47s/ep, best_f1=0.015, f1=0.011, src=raw, t[0m  Fold 1 train:  25%|[36m▎[0m| 20/80 [04:50<14:32, 14.53s/ep, best_f1=0.015, f1=0.011, src=raw, t[0m  Fold 1 train:  25%|[36m▎[0m| 20/80 [05:04<14:32, 14.53s/ep, best_f1=0.015, f1=0.008, src=raw, t[0m  Fold 1 train:  26%|[36m▎[0m| 21/80 [05:04<14:18, 14.54s/ep, best_f1=0.015, f1=0.008, src=raw, t[0m  Fold 1 train:  26%|[36m▎[0m| 21/80 [05:19<14:18, 14.54s/ep, best_f1=0.015, f1=0.007, src=raw, t[0m                                                                                            Fold 1 train:  26%|[36m▎[0m| 21/80 [05:19<14:18, 14.54s/ep, best_f1=0.015, f1=0.007, src=raw, t[0m                                                                                            Early stop at epoch 22 (no macro-F1 gain in 15 epochs; best from 'raw')
+
+  Fold 1 metrics (chance top-1 = 0.028, 324 recordings):
+    top-1 (recording): 0.034
+    balanced acc     : 0.034
+    macro-F1         : 0.015  (selection metric)
+    top-5            : 0.142  (chance = 0.139)
+    checkpoint src   : raw weights
+                precision    recall  f1-score   support
+
+            ax      0.000     0.000     0.000         9
+          bear      0.111     0.111     0.111         9
+ bottle_opener      0.000     0.000     0.000         9
+         broom      0.030     0.667     0.057         9
+           cat      0.071     0.111     0.087         9
+     chain_saw      0.000     0.000     0.000         9
+          cock      0.000     0.000     0.000         9
+computer_mouse      0.000     0.000     0.000         9
+     corkscrew      0.000     0.000     0.000         9
+           cow      0.000     0.000     0.000         9
+          crab      0.000     0.000     0.000         9
+          crow      0.000     0.000     0.000         9
+           dog      0.000     0.000     0.000         9
+        donkey      0.000     0.000     0.000         9
+          duck      0.000     0.000     0.000         9
+     elephants      1.000     0.111     0.200         9
+          frog      0.000     0.000     0.000         9
+        hammer      0.000     0.000     0.000         9
+      hand_saw      0.000     0.000     0.000         9
+        kettle      0.000     0.000     0.000         9
+      keyboard      0.000     0.000     0.000         9
+         knife      0.000     0.000     0.000         9
+          lion      0.000     0.000     0.000         9
+     microwave      0.000     0.000     0.000         9
+        monkey      0.000     0.000     0.000         9
+           owl      0.000     0.000     0.000         9
+           pen      0.000     0.000     0.000         9
+         phone      0.000     0.000     0.000         9
+           pig      0.000     0.000     0.000         9
+      scissors      0.000     0.000     0.000         9
+         sheep      0.027     0.111     0.043         9
+        shovel      0.020     0.111     0.033         9
+         snake      0.000     0.000     0.000         9
+         tiger      0.000     0.000     0.000         9
+    toothbrash      0.000     0.000     0.000         9
+vacuum_cleaner      0.000     0.000     0.000         9
+
+      accuracy                          0.034       324
+     macro avg      0.035     0.034     0.015       324
+  weighted avg      0.035     0.034     0.015       324
+
+  [PLOT] Saved numa_plots_v6/fold1_training_curves.png
+  [PLOT] Saved numa_plots_v6/fold1_confusion_matrix.png
+  Checkpoint → numa_v6_fold1.pt
+
+── Fold 2  [test=instance2] ──
+    Building train set (1296 recordings) ...
+    Building test  set (324 recordings) ...
+    Train recordings: 1296 | Test recordings: 324
+    Train recordings/class: min=36 max=36 mean=36 (imbalance 1.0×)
+  Fold 2 train:   0%|[36m                                              [0m| 0/80 [00:00<?, ?ep/s][0m  Fold 2 train:   0%|[36m [0m| 0/80 [00:14<?, ?ep/s, best_f1=0.020, f1=0.020, src=raw, tr=0.02, v[0m  Fold 2 train:   1%|[36m [0m| 1/80 [00:14<19:10, 14.56s/ep, best_f1=0.020, f1=0.020, src=raw, tr[0m  Fold 2 train:   1%|[36m [0m| 1/80 [00:29<19:10, 14.56s/ep, best_f1=0.020, f1=0.016, src=raw, tr[0m  Fold 2 train:   2%|[36m [0m| 2/80 [00:29<18:53, 14.54s/ep, best_f1=0.020, f1=0.016, src=raw, tr[0m  Fold 2 train:   2%|[36m [0m| 2/80 [00:43<18:53, 14.54s/ep, best_f1=0.020, f1=0.016, src=raw, tr[0m  Fold 2 train:   4%|[36m [0m| 3/80 [00:43<18:36, 14.50s/ep, best_f1=0.020, f1=0.016, src=raw, tr[0m  Fold 2 train:   4%|[36m [0m| 3/80 [00:57<18:36, 14.50s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:   5%|[36m [0m| 4/80 [00:57<18:20, 14.48s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:   5%|[36m [0m| 4/80 [01:12<18:20, 14.48s/ep, best_f1=0.020, f1=0.015, src=raw, tr[0m  Fold 2 train:   6%|[36m [0m| 5/80 [01:12<18:03, 14.45s/ep, best_f1=0.020, f1=0.015, src=raw, tr[0m  Fold 2 train:   6%|[36m [0m| 5/80 [01:26<18:03, 14.45s/ep, best_f1=0.020, f1=0.015, src=raw, tr[0m  Fold 2 train:   8%|[36m [0m| 6/80 [01:26<17:50, 14.47s/ep, best_f1=0.020, f1=0.015, src=raw, tr[0m  Fold 2 train:   8%|[36m [0m| 6/80 [01:41<17:50, 14.47s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:   9%|[36m [0m| 7/80 [01:41<17:35, 14.45s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:   9%|[36m [0m| 7/80 [01:55<17:35, 14.45s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:  10%|[36m [0m| 8/80 [01:55<17:22, 14.47s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:  10%|[36m [0m| 8/80 [02:10<17:22, 14.47s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:  11%|[36m [0m| 9/80 [02:10<17:16, 14.60s/ep, best_f1=0.020, f1=0.017, src=raw, tr[0m  Fold 2 train:  11%|[36m [0m| 9/80 [02:25<17:16, 14.60s/ep, best_f1=0.021, f1=0.021, src=ema, tr[0m  Fold 2 train:  12%|[36m▏[0m| 10/80 [02:25<17:05, 14.65s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  12%|[36m▏[0m| 10/80 [02:39<17:05, 14.65s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  14%|[36m▏[0m| 11/80 [02:39<16:47, 14.61s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  14%|[36m▏[0m| 11/80 [02:54<16:47, 14.61s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  15%|[36m▏[0m| 12/80 [02:54<16:35, 14.64s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  15%|[36m▏[0m| 12/80 [03:09<16:35, 14.64s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  16%|[36m▏[0m| 13/80 [03:09<16:19, 14.63s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  16%|[36m▏[0m| 13/80 [03:24<16:19, 14.63s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  18%|[36m▏[0m| 14/80 [03:24<16:09, 14.69s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  18%|[36m▏[0m| 14/80 [03:39<16:09, 14.69s/ep, best_f1=0.021, f1=0.018, src=ema, t[0m  Fold 2 train:  19%|[36m▏[0m| 15/80 [03:39<15:59, 14.77s/ep, best_f1=0.021, f1=0.018, src=ema, t[0m  Fold 2 train:  19%|[36m▏[0m| 15/80 [03:53<15:59, 14.77s/ep, best_f1=0.021, f1=0.018, src=ema, t[0m  Fold 2 train:  20%|[36m▏[0m| 16/80 [03:53<15:41, 14.71s/ep, best_f1=0.021, f1=0.018, src=ema, t[0m  Fold 2 train:  20%|[36m▏[0m| 16/80 [04:08<15:41, 14.71s/ep, best_f1=0.021, f1=0.019, src=ema, t[0m  Fold 2 train:  21%|[36m▏[0m| 17/80 [04:08<15:22, 14.64s/ep, best_f1=0.021, f1=0.019, src=ema, t[0m  Fold 2 train:  21%|[36m▏[0m| 17/80 [04:22<15:22, 14.64s/ep, best_f1=0.021, f1=0.019, src=ema, t[0m  Fold 2 train:  22%|[36m▏[0m| 18/80 [04:22<15:04, 14.60s/ep, best_f1=0.021, f1=0.019, src=ema, t[0m  Fold 2 train:  22%|[36m▏[0m| 18/80 [04:37<15:04, 14.60s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  24%|[36m▏[0m| 19/80 [04:37<14:49, 14.58s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  24%|[36m▏[0m| 19/80 [04:51<14:49, 14.58s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  25%|[36m▎[0m| 20/80 [04:51<14:32, 14.53s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  25%|[36m▎[0m| 20/80 [05:06<14:32, 14.53s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  26%|[36m▎[0m| 21/80 [05:06<14:17, 14.53s/ep, best_f1=0.021, f1=0.020, src=ema, t[0m  Fold 2 train:  26%|[36m▎[0m| 21/80 [05:20<14:17, 14.53s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  28%|[36m▎[0m| 22/80 [05:20<14:02, 14.52s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  28%|[36m▎[0m| 22/80 [05:35<14:02, 14.52s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  29%|[36m▎[0m| 23/80 [05:35<13:53, 14.63s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  29%|[36m▎[0m| 23/80 [05:50<13:53, 14.63s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  30%|[36m▎[0m| 24/80 [05:50<13:44, 14.72s/ep, best_f1=0.021, f1=0.021, src=ema, t[0m  Fold 2 train:  30%|[36m▎[0m| 24/80 [06:05<13:44, 14.72s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  31%|[36m▎[0m| 25/80 [06:05<13:28, 14.69s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  31%|[36m▎[0m| 25/80 [06:19<13:28, 14.69s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  32%|[36m▎[0m| 26/80 [06:19<13:10, 14.64s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  32%|[36m▎[0m| 26/80 [06:34<13:10, 14.64s/ep, best_f1=0.022, f1=0.021, src=ema, t[0m  Fold 2 train:  34%|[36m▎[0m| 27/80 [06:34<12:56, 14.65s/ep, best_f1=0.022, f1=0.021, src=ema, t[0m  Fold 2 train:  34%|[36m▎[0m| 27/80 [06:48<12:56, 14.65s/ep, best_f1=0.022, f1=0.021, src=ema, t[0m  Fold 2 train:  35%|[36m▎[0m| 28/80 [06:48<12:37, 14.58s/ep, best_f1=0.022, f1=0.021, src=ema, t[0m  Fold 2 train:  35%|[36m▎[0m| 28/80 [07:03<12:37, 14.58s/ep, best_f1=0.022, f1=0.020, src=ema, t[0m  Fold 2 train:  36%|[36m▎[0m| 29/80 [07:03<12:22, 14.56s/ep, best_f1=0.022, f1=0.020, src=ema, t[0m  Fold 2 train:  36%|[36m▎[0m| 29/80 [07:17<12:22, 14.56s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  38%|[36m▍[0m| 30/80 [07:17<12:06, 14.54s/ep, best_f1=0.022, f1=0.022, src=ema, t[0m  Fold 2 train:  38%|[36m▍[0m| 30/80 [07:32<12:06, 14.54s/ep, best_f1=0.023, f1=0.023, src=ema, t[0m  Fold 2 train:  39%|[36m▍[0m| 31/80 [07:32<11:53, 14.56s/ep, best_f1=0.023, f1=0.023, src=ema, t[0m  Fold 2 train:  39%|[36m▍[0m| 31/80 [07:46<11:53, 14.56s/ep, best_f1=0.023, f1=0.022, src=ema, t[0m  Fold 2 train:  40%|[36m▍[0m| 32/80 [07:46<11:37, 14.53s/ep, best_f1=0.023, f1=0.022, src=ema, t[0m  Fold 2 train:  40%|[36m▍[0m| 32/80 [08:01<11:37, 14.53s/ep, best_f1=0.023, f1=0.022, src=ema, t[0m  Fold 2 train:  41%|[36m▍[0m| 33/80 [08:01<11:22, 14.53s/ep, best_f1=0.023, f1=0.022, src=ema, t[0m  Fold 2 train:  41%|[36m▍[0m| 33/80 [08:15<11:22, 14.53s/ep, best_f1=0.023, f1=0.017, src=ema, t[0m  Fold 2 train:  42%|[36m▍[0m| 34/80 [08:15<11:07, 14.51s/ep, best_f1=0.023, f1=0.017, src=ema, t[0m  Fold 2 train:  42%|[36m▍[0m| 34/80 [08:30<11:07, 14.51s/ep, best_f1=0.023, f1=0.017, src=ema, t[0m  Fold 2 train:  44%|[36m▍[0m| 35/80 [08:30<10:51, 14.48s/ep, best_f1=0.023, f1=0.017, src=ema, t[0m  Fold 2 train:  44%|[36m▍[0m| 35/80 [08:44<10:51, 14.48s/ep, best_f1=0.023, f1=0.013, src=ema, t[0m  Fold 2 train:  45%|[36m▍[0m| 36/80 [08:44<10:38, 14.51s/ep, best_f1=0.023, f1=0.013, src=ema, t[0m  Fold 2 train:  45%|[36m▍[0m| 36/80 [08:59<10:38, 14.51s/ep, best_f1=0.023, f1=0.015, src=ema, t[0m  Fold 2 train:  46%|[36m▍[0m| 37/80 [08:59<10:23, 14.51s/ep, best_f1=0.023, f1=0.015, src=ema, t[0m  Fold 2 train:  46%|[36m▍[0m| 37/80 [09:13<10:23, 14.51s/ep, best_f1=0.023, f1=0.009, src=ema, t[0m  Fold 2 train:  48%|[36m▍[0m| 38/80 [09:13<10:09, 14.51s/ep, best_f1=0.023, f1=0.009, src=ema, t[0m  Fold 2 train:  48%|[36m▍[0m| 38/80 [09:28<10:09, 14.51s/ep, best_f1=0.023, f1=0.011, src=ema, t[0m  Fold 2 train:  49%|[36m▍[0m| 39/80 [09:28<09:54, 14.51s/ep, best_f1=0.023, f1=0.011, src=ema, t[0m  Fold 2 train:  49%|[36m▍[0m| 39/80 [09:42<09:54, 14.51s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  50%|[36m▌[0m| 40/80 [09:42<09:39, 14.48s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  50%|[36m▌[0m| 40/80 [09:56<09:39, 14.48s/ep, best_f1=0.023, f1=0.007, src=ema, t[0m  Fold 2 train:  51%|[36m▌[0m| 41/80 [09:56<09:23, 14.45s/ep, best_f1=0.023, f1=0.007, src=ema, t[0m  Fold 2 train:  51%|[36m▌[0m| 41/80 [10:11<09:23, 14.45s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  52%|[36m▌[0m| 42/80 [10:11<09:10, 14.50s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  52%|[36m▌[0m| 42/80 [10:26<09:10, 14.50s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  54%|[36m▌[0m| 43/80 [10:26<08:56, 14.50s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  54%|[36m▌[0m| 43/80 [10:40<08:56, 14.50s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  55%|[36m▌[0m| 44/80 [10:40<08:41, 14.49s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  55%|[36m▌[0m| 44/80 [10:55<08:41, 14.49s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  56%|[36m▌[0m| 45/80 [10:55<08:27, 14.49s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m  Fold 2 train:  56%|[36m▌[0m| 45/80 [11:09<08:27, 14.49s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m                                                                                            Fold 2 train:  56%|[36m▌[0m| 45/80 [11:09<08:27, 14.49s/ep, best_f1=0.023, f1=0.008, src=ema, t[0m                                                                                            Early stop at epoch 46 (no macro-F1 gain in 15 epochs; best from 'ema')
+
+  Fold 2 metrics (chance top-1 = 0.028, 324 recordings):
+    top-1 (recording): 0.040
+    balanced acc     : 0.040
+    macro-F1         : 0.023  (selection metric)
+    top-5            : 0.139  (chance = 0.139)
+    checkpoint src   : ema weights
+                precision    recall  f1-score   support
+
+            ax      0.037     0.444     0.069         9
+          bear      0.024     0.111     0.040         9
+ bottle_opener      1.000     0.111     0.200         9
+         broom      0.000     0.000     0.000         9
+           cat      0.000     0.000     0.000         9
+     chain_saw      0.000     0.000     0.000         9
+          cock      0.000     0.000     0.000         9
+computer_mouse      0.038     0.222     0.065         9
+     corkscrew      0.000     0.000     0.000         9
+           cow      0.000     0.000     0.000         9
+          crab      0.000     0.000     0.000         9
+          crow      0.080     0.222     0.118         9
+           dog      0.000     0.000     0.000         9
+        donkey      0.000     0.000     0.000         9
+          duck      0.000     0.000     0.000         9
+     elephants      0.000     0.000     0.000         9
+          frog      0.000     0.000     0.000         9
+        hammer      0.000     0.000     0.000         9
+      hand_saw      0.000     0.000     0.000         9
+        kettle      0.000     0.000     0.000         9
+      keyboard      0.056     0.111     0.074         9
+         knife      0.000     0.000     0.000         9
+          lion      0.000     0.000     0.000         9
+     microwave      0.000     0.000     0.000         9
+        monkey      0.000     0.000     0.000         9
+           owl      0.000     0.000     0.000         9
+           pen      0.000     0.000     0.000         9
+         phone      0.032     0.111     0.050         9
+           pig      0.000     0.000     0.000         9
+      scissors      0.000     0.000     0.000         9
+         sheep      1.000     0.111     0.200         9
+        shovel      0.000     0.000     0.000         9
+         snake      0.000     0.000     0.000         9
+         tiger      0.000     0.000     0.000         9
+    toothbrash      0.000     0.000     0.000         9
+vacuum_cleaner      0.000     0.000     0.000         9
+
+      accuracy                          0.040       324
+     macro avg      0.063     0.040     0.023       324
+  weighted avg      0.063     0.040     0.023       324
+
+  [PLOT] Saved numa_plots_v6/fold2_training_curves.png
+  [PLOT] Saved numa_plots_v6/fold2_confusion_matrix.png
+  Checkpoint → numa_v6_fold2.pt
+
+── Fold 3  [test=instance3] ──
+    Building train set (1296 recordings) ...
+    Building test  set (324 recordings) ...
+    Train recordings: 1296 | Test recordings: 324
+    Train recordings/class: min=36 max=36 mean=36 (imbalance 1.0×)
+  Fold 3 train:   0%|[36m                                              [0m| 0/80 [00:00<?, ?ep/s][0m  Fold 3 train:   0%|[36m [0m| 0/80 [00:14<?, ?ep/s, best_f1=0.012, f1=0.012, src=raw, tr=0.04, v[0m  Fold 3 train:   1%|[36m [0m| 1/80 [00:14<19:31, 14.83s/ep, best_f1=0.012, f1=0.012, src=raw, tr[0m  Fold 3 train:   1%|[36m [0m| 1/80 [00:29<19:31, 14.83s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   2%|[36m [0m| 2/80 [00:29<19:11, 14.76s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   2%|[36m [0m| 2/80 [00:44<19:11, 14.76s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   4%|[36m [0m| 3/80 [00:44<18:58, 14.78s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   4%|[36m [0m| 3/80 [00:59<18:58, 14.78s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   5%|[36m [0m| 4/80 [00:59<18:41, 14.75s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   5%|[36m [0m| 4/80 [01:13<18:41, 14.75s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:   6%|[36m [0m| 5/80 [01:13<18:25, 14.73s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:   6%|[36m [0m| 5/80 [01:28<18:25, 14.73s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   8%|[36m [0m| 6/80 [01:28<18:18, 14.84s/ep, best_f1=0.012, f1=0.010, src=raw, tr[0m  Fold 3 train:   8%|[36m [0m| 6/80 [01:43<18:18, 14.84s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:   9%|[36m [0m| 7/80 [01:43<18:11, 14.95s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:   9%|[36m [0m| 7/80 [01:58<18:11, 14.95s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:  10%|[36m [0m| 8/80 [01:58<17:56, 14.95s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:  10%|[36m [0m| 8/80 [02:13<17:56, 14.95s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:  11%|[36m [0m| 9/80 [02:13<17:36, 14.88s/ep, best_f1=0.012, f1=0.011, src=raw, tr[0m  Fold 3 train:  11%|[36m [0m| 9/80 [02:28<17:36, 14.88s/ep, best_f1=0.013, f1=0.013, src=ema, tr[0m  Fold 3 train:  12%|[36m▏[0m| 10/80 [02:28<17:17, 14.82s/ep, best_f1=0.013, f1=0.013, src=ema, t[0m  Fold 3 train:  12%|[36m▏[0m| 10/80 [02:43<17:17, 14.82s/ep, best_f1=0.016, f1=0.016, src=ema, t[0m  Fold 3 train:  14%|[36m▏[0m| 11/80 [02:43<16:59, 14.77s/ep, best_f1=0.016, f1=0.016, src=ema, t[0m  Fold 3 train:  14%|[36m▏[0m| 11/80 [02:57<16:59, 14.77s/ep, best_f1=0.016, f1=0.015, src=ema, t[0m  Fold 3 train:  15%|[36m▏[0m| 12/80 [02:57<16:42, 14.75s/ep, best_f1=0.016, f1=0.015, src=ema, t[0m  Fold 3 train:  15%|[36m▏[0m| 12/80 [03:12<16:42, 14.75s/ep, best_f1=0.017, f1=0.017, src=ema, t[0m  Fold 3 train:  16%|[36m▏[0m| 13/80 [03:12<16:30, 14.78s/ep, best_f1=0.017, f1=0.017, src=ema, t[0m  Fold 3 train:  16%|[36m▏[0m| 13/80 [03:27<16:30, 14.78s/ep, best_f1=0.017, f1=0.015, src=ema, t[0m  Fold 3 train:  18%|[36m▏[0m| 14/80 [03:27<16:21, 14.86s/ep, best_f1=0.017, f1=0.015, src=ema, t[0m  Fold 3 train:  18%|[36m▏[0m| 14/80 [03:42<16:21, 14.86s/ep, best_f1=0.017, f1=0.017, src=ema, t[0m  Fold 3 train:  19%|[36m▏[0m| 15/80 [03:42<16:07, 14.88s/ep, best_f1=0.017, f1=0.017, src=ema, t[0m  Fold 3 train:  19%|[36m▏[0m| 15/80 [03:57<16:07, 14.88s/ep, best_f1=0.017, f1=0.013, src=ema, t[0m  Fold 3 train:  20%|[36m▏[0m| 16/80 [03:57<15:49, 14.84s/ep, best_f1=0.017, f1=0.013, src=ema, t[0m  Fold 3 train:  20%|[36m▏[0m| 16/80 [04:11<15:49, 14.84s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  21%|[36m▏[0m| 17/80 [04:11<15:31, 14.78s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  21%|[36m▏[0m| 17/80 [04:26<15:31, 14.78s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  22%|[36m▏[0m| 18/80 [04:26<15:14, 14.75s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  22%|[36m▏[0m| 18/80 [04:41<15:14, 14.75s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  24%|[36m▏[0m| 19/80 [04:41<14:56, 14.70s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  24%|[36m▏[0m| 19/80 [04:55<14:56, 14.70s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  25%|[36m▎[0m| 20/80 [04:55<14:42, 14.70s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  25%|[36m▎[0m| 20/80 [05:10<14:42, 14.70s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  26%|[36m▎[0m| 21/80 [05:10<14:26, 14.68s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  26%|[36m▎[0m| 21/80 [05:25<14:26, 14.68s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  28%|[36m▎[0m| 22/80 [05:25<14:13, 14.71s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 3 train:  28%|[36m▎[0m| 22/80 [05:39<14:13, 14.71s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  29%|[36m▎[0m| 23/80 [05:39<13:56, 14.68s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  29%|[36m▎[0m| 23/80 [05:54<13:56, 14.68s/ep, best_f1=0.017, f1=0.011, src=ema, t[0m  Fold 3 train:  30%|[36m▎[0m| 24/80 [05:54<13:42, 14.68s/ep, best_f1=0.017, f1=0.011, src=ema, t[0m  Fold 3 train:  30%|[36m▎[0m| 24/80 [06:09<13:42, 14.68s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  31%|[36m▎[0m| 25/80 [06:09<13:32, 14.78s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  31%|[36m▎[0m| 25/80 [06:24<13:32, 14.78s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  32%|[36m▎[0m| 26/80 [06:24<13:18, 14.79s/ep, best_f1=0.017, f1=0.009, src=ema, t[0m  Fold 3 train:  32%|[36m▎[0m| 26/80 [06:39<13:18, 14.79s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  34%|[36m▎[0m| 27/80 [06:39<13:03, 14.79s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m  Fold 3 train:  34%|[36m▎[0m| 27/80 [06:53<13:03, 14.79s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m                                                                                            Fold 3 train:  34%|[36m▎[0m| 27/80 [06:53<13:03, 14.79s/ep, best_f1=0.017, f1=0.010, src=ema, t[0m                                                                                            Early stop at epoch 28 (no macro-F1 gain in 15 epochs; best from 'ema')
+
+  Fold 3 metrics (chance top-1 = 0.028, 324 recordings):
+    top-1 (recording): 0.034
+    balanced acc     : 0.034
+    macro-F1         : 0.017  (selection metric)
+    top-5            : 0.130  (chance = 0.139)
+    checkpoint src   : ema weights
+                precision    recall  f1-score   support
+
+            ax      0.000     0.000     0.000         9
+          bear      0.000     0.000     0.000         9
+ bottle_opener      0.000     0.000     0.000         9
+         broom      0.026     0.111     0.043         9
+           cat      0.067     0.111     0.083         9
+     chain_saw      0.000     0.000     0.000         9
+          cock      0.028     0.111     0.044         9
+computer_mouse      0.059     0.111     0.077         9
+     corkscrew      0.000     0.000     0.000         9
+           cow      0.100     0.111     0.105         9
+          crab      0.000     0.000     0.000         9
+          crow      0.000     0.000     0.000         9
+           dog      0.000     0.000     0.000         9
+        donkey      0.000     0.000     0.000         9
+          duck      0.000     0.000     0.000         9
+     elephants      0.000     0.000     0.000         9
+          frog      0.000     0.000     0.000         9
+        hammer      0.000     0.000     0.000         9
+      hand_saw      0.027     0.444     0.052         9
+        kettle      0.000     0.000     0.000         9
+      keyboard      0.000     0.000     0.000         9
+         knife      0.000     0.000     0.000         9
+          lion      0.000     0.000     0.000         9
+     microwave      0.000     0.000     0.000         9
+        monkey      0.000     0.000     0.000         9
+           owl      0.000     0.000     0.000         9
+           pen      0.000     0.000     0.000         9
+         phone      0.000     0.000     0.000         9
+           pig      0.062     0.111     0.080         9
+      scissors      0.000     0.000     0.000         9
+         sheep      0.000     0.000     0.000         9
+        shovel      0.000     0.000     0.000         9
+         snake      0.200     0.111     0.143         9
+         tiger      0.000     0.000     0.000         9
+    toothbrash      0.000     0.000     0.000         9
+vacuum_cleaner      0.000     0.000     0.000         9
+
+      accuracy                          0.034       324
+     macro avg      0.016     0.034     0.017       324
+  weighted avg      0.016     0.034     0.017       324
+
+  [PLOT] Saved numa_plots_v6/fold3_training_curves.png
+  [PLOT] Saved numa_plots_v6/fold3_confusion_matrix.png
+  Checkpoint → numa_v6_fold3.pt
+
+── Fold 4  [test=instance4] ──
+    Building train set (1296 recordings) ...
+    Building test  set (324 recordings) ...
+    Train recordings: 1296 | Test recordings: 324
+    Train recordings/class: min=36 max=36 mean=36 (imbalance 1.0×)
+  Fold 4 train:   0%|[36m                                              [0m| 0/80 [00:00<?, ?ep/s][0m  Fold 4 train:   0%|[36m [0m| 0/80 [00:14<?, ?ep/s, best_f1=0.017, f1=0.017, src=ema, tr=0.02, v[0m  Fold 4 train:   1%|[36m [0m| 1/80 [00:14<19:12, 14.59s/ep, best_f1=0.017, f1=0.017, src=ema, tr[0m  Fold 4 train:   1%|[36m [0m| 1/80 [00:29<19:12, 14.59s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   2%|[36m [0m| 2/80 [00:29<18:53, 14.53s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   2%|[36m [0m| 2/80 [00:43<18:53, 14.53s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   4%|[36m [0m| 3/80 [00:43<18:42, 14.58s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   4%|[36m [0m| 3/80 [00:58<18:42, 14.58s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   5%|[36m [0m| 4/80 [00:58<18:30, 14.61s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   5%|[36m [0m| 4/80 [01:12<18:30, 14.61s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   6%|[36m [0m| 5/80 [01:12<18:14, 14.60s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   6%|[36m [0m| 5/80 [01:27<18:14, 14.60s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   8%|[36m [0m| 6/80 [01:27<17:59, 14.58s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:   8%|[36m [0m| 6/80 [01:42<17:59, 14.58s/ep, best_f1=0.017, f1=0.013, src=ema, tr[0m  Fold 4 train:   9%|[36m [0m| 7/80 [01:42<17:42, 14.56s/ep, best_f1=0.017, f1=0.013, src=ema, tr[0m  Fold 4 train:   9%|[36m [0m| 7/80 [01:56<17:42, 14.56s/ep, best_f1=0.017, f1=0.014, src=ema, tr[0m  Fold 4 train:  10%|[36m [0m| 8/80 [01:56<17:26, 14.54s/ep, best_f1=0.017, f1=0.014, src=ema, tr[0m  Fold 4 train:  10%|[36m [0m| 8/80 [02:11<17:26, 14.54s/ep, best_f1=0.017, f1=0.014, src=ema, tr[0m  Fold 4 train:  11%|[36m [0m| 9/80 [02:11<17:15, 14.58s/ep, best_f1=0.017, f1=0.014, src=ema, tr[0m  Fold 4 train:  11%|[36m [0m| 9/80 [02:25<17:15, 14.58s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 4 train:  12%|[36m▏[0m| 10/80 [02:25<17:01, 14.60s/ep, best_f1=0.017, f1=0.015, src=ema, t[0m  Fold 4 train:  12%|[36m▏[0m| 10/80 [02:40<17:01, 14.60s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  14%|[36m▏[0m| 11/80 [02:40<16:47, 14.60s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  14%|[36m▏[0m| 11/80 [02:55<16:47, 14.60s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  15%|[36m▏[0m| 12/80 [02:55<16:35, 14.64s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  15%|[36m▏[0m| 12/80 [03:09<16:35, 14.64s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  16%|[36m▏[0m| 13/80 [03:09<16:20, 14.64s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  16%|[36m▏[0m| 13/80 [03:24<16:20, 14.64s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  18%|[36m▏[0m| 14/80 [03:24<16:03, 14.60s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  18%|[36m▏[0m| 14/80 [03:38<16:03, 14.60s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  19%|[36m▏[0m| 15/80 [03:38<15:48, 14.59s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 4 train:  19%|[36m▏[0m| 15/80 [03:53<15:48, 14.59s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m                                                                                            Fold 4 train:  19%|[36m▏[0m| 15/80 [03:53<15:48, 14.59s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m                                                                                            Early stop at epoch 16 (no macro-F1 gain in 15 epochs; best from 'ema')
+
+  Fold 4 metrics (chance top-1 = 0.028, 324 recordings):
+    top-1 (recording): 0.034
+    balanced acc     : 0.034
+    macro-F1         : 0.017  (selection metric)
+    top-5            : 0.151  (chance = 0.139)
+    checkpoint src   : ema weights
+                precision    recall  f1-score   support
+
+            ax      0.000     0.000     0.000         9
+          bear      0.000     0.000     0.000         9
+ bottle_opener      0.000     0.000     0.000         9
+         broom      0.038     0.111     0.057         9
+           cat      0.000     0.000     0.000         9
+     chain_saw      0.000     0.000     0.000         9
+          cock      0.000     0.000     0.000         9
+computer_mouse      0.000     0.000     0.000         9
+     corkscrew      0.000     0.000     0.000         9
+           cow      0.000     0.000     0.000         9
+          crab      0.000     0.000     0.000         9
+          crow      0.250     0.111     0.154         9
+           dog      0.000     0.000     0.000         9
+        donkey      0.037     0.111     0.056         9
+          duck      0.038     0.222     0.066         9
+     elephants      0.000     0.000     0.000         9
+          frog      0.000     0.000     0.000         9
+        hammer      0.000     0.000     0.000         9
+      hand_saw      0.500     0.111     0.182         9
+        kettle      0.000     0.000     0.000         9
+      keyboard      0.000     0.000     0.000         9
+         knife      0.000     0.000     0.000         9
+          lion      0.000     0.000     0.000         9
+     microwave      0.000     0.000     0.000         9
+        monkey      0.000     0.000     0.000         9
+           owl      0.029     0.111     0.047         9
+           pen      0.000     0.000     0.000         9
+         phone      0.000     0.000     0.000         9
+           pig      0.000     0.000     0.000         9
+      scissors      0.000     0.000     0.000         9
+         sheep      0.000     0.000     0.000         9
+        shovel      0.000     0.000     0.000         9
+         snake      0.000     0.000     0.000         9
+         tiger      0.000     0.000     0.000         9
+    toothbrash      0.000     0.000     0.000         9
+vacuum_cleaner      0.028     0.444     0.052         9
+
+      accuracy                          0.034       324
+     macro avg      0.026     0.034     0.017       324
+  weighted avg      0.026     0.034     0.017       324
+
+  [PLOT] Saved numa_plots_v6/fold4_training_curves.png
+  [PLOT] Saved numa_plots_v6/fold4_confusion_matrix.png
+  Checkpoint → numa_v6_fold4.pt
+
+── Fold 5  [test=instance5] ──
+    Building train set (1296 recordings) ...
+    Building test  set (324 recordings) ...
+    Train recordings: 1296 | Test recordings: 324
+    Train recordings/class: min=36 max=36 mean=36 (imbalance 1.0×)
+  Fold 5 train:   0%|[36m                                              [0m| 0/80 [00:00<?, ?ep/s][0m  Fold 5 train:   0%|[36m [0m| 0/80 [00:14<?, ?ep/s, best_f1=0.009, f1=0.009, src=raw, tr=0.02, v[0m  Fold 5 train:   1%|[36m [0m| 1/80 [00:14<19:07, 14.52s/ep, best_f1=0.009, f1=0.009, src=raw, tr[0m  Fold 5 train:   1%|[36m [0m| 1/80 [00:29<19:07, 14.52s/ep, best_f1=0.009, f1=0.009, src=ema, tr[0m  Fold 5 train:   2%|[36m [0m| 2/80 [00:29<18:51, 14.51s/ep, best_f1=0.009, f1=0.009, src=ema, tr[0m  Fold 5 train:   2%|[36m [0m| 2/80 [00:43<18:51, 14.51s/ep, best_f1=0.009, f1=0.007, src=ema, tr[0m  Fold 5 train:   4%|[36m [0m| 3/80 [00:43<18:38, 14.53s/ep, best_f1=0.009, f1=0.007, src=ema, tr[0m  Fold 5 train:   4%|[36m [0m| 3/80 [00:58<18:38, 14.53s/ep, best_f1=0.013, f1=0.013, src=ema, tr[0m  Fold 5 train:   5%|[36m [0m| 4/80 [00:58<18:22, 14.51s/ep, best_f1=0.013, f1=0.013, src=ema, tr[0m  Fold 5 train:   5%|[36m [0m| 4/80 [01:12<18:22, 14.51s/ep, best_f1=0.013, f1=0.012, src=ema, tr[0m  Fold 5 train:   6%|[36m [0m| 5/80 [01:12<18:07, 14.50s/ep, best_f1=0.013, f1=0.012, src=ema, tr[0m  Fold 5 train:   6%|[36m [0m| 5/80 [01:26<18:07, 14.50s/ep, best_f1=0.013, f1=0.012, src=ema, tr[0m  Fold 5 train:   8%|[36m [0m| 6/80 [01:26<17:51, 14.48s/ep, best_f1=0.013, f1=0.012, src=ema, tr[0m  Fold 5 train:   8%|[36m [0m| 6/80 [01:41<17:51, 14.48s/ep, best_f1=0.015, f1=0.015, src=ema, tr[0m  Fold 5 train:   9%|[36m [0m| 7/80 [01:41<17:46, 14.62s/ep, best_f1=0.015, f1=0.015, src=ema, tr[0m  Fold 5 train:   9%|[36m [0m| 7/80 [01:56<17:46, 14.62s/ep, best_f1=0.017, f1=0.017, src=ema, tr[0m  Fold 5 train:  10%|[36m [0m| 8/80 [01:56<17:39, 14.71s/ep, best_f1=0.017, f1=0.017, src=ema, tr[0m  Fold 5 train:  10%|[36m [0m| 8/80 [02:11<17:39, 14.71s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 5 train:  11%|[36m [0m| 9/80 [02:11<17:29, 14.78s/ep, best_f1=0.017, f1=0.015, src=ema, tr[0m  Fold 5 train:  11%|[36m [0m| 9/80 [02:26<17:29, 14.78s/ep, best_f1=0.017, f1=0.016, src=ema, tr[0m  Fold 5 train:  12%|[36m▏[0m| 10/80 [02:26<17:18, 14.84s/ep, best_f1=0.017, f1=0.016, src=ema, t[0m  Fold 5 train:  12%|[36m▏[0m| 10/80 [02:41<17:18, 14.84s/ep, best_f1=0.017, f1=0.015, src=ema, t[0m  Fold 5 train:  14%|[36m▏[0m| 11/80 [02:41<17:06, 14.87s/ep, best_f1=0.017, f1=0.015, src=ema, t[0m  Fold 5 train:  14%|[36m▏[0m| 11/80 [02:56<17:06, 14.87s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 5 train:  15%|[36m▏[0m| 12/80 [02:56<16:53, 14.90s/ep, best_f1=0.017, f1=0.012, src=ema, t[0m  Fold 5 train:  15%|[36m▏[0m| 12/80 [03:11<16:53, 14.90s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  16%|[36m▏[0m| 13/80 [03:11<16:40, 14.93s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  16%|[36m▏[0m| 13/80 [03:26<16:40, 14.93s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  18%|[36m▏[0m| 14/80 [03:26<16:17, 14.81s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  18%|[36m▏[0m| 14/80 [03:40<16:17, 14.81s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  19%|[36m▏[0m| 15/80 [03:40<15:59, 14.76s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  19%|[36m▏[0m| 15/80 [03:55<15:59, 14.76s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  20%|[36m▏[0m| 16/80 [03:55<15:42, 14.73s/ep, best_f1=0.017, f1=0.014, src=ema, t[0m  Fold 5 train:  20%|[36m▏[0m| 16/80 [04:10<15:42, 14.73s/ep, best_f1=0.017, f1=0.013, src=ema, t[0m  Fold 5 train:  21%|[36m▏[0m| 17/80 [04:10<15:24, 14.68s/ep, best_f1=0.017, f1=0.013, src=ema, t[0m  Fold 5 train:  21%|[36m▏[0m| 17/80 [04:24<15:24, 14.68s/ep, best_f1=0.017, f1=0.017, src=raw, t[0m  Fold 5 train:  22%|[36m▏[0m| 18/80 [04:24<15:07, 14.64s/ep, best_f1=0.017, f1=0.017, src=raw, t[0m  Fold 5 train:  22%|[36m▏[0m| 18/80 [04:39<15:07, 14.64s/ep, best_f1=0.017, f1=0.017, src=raw, t[0m  Fold 5 train:  24%|[36m▏[0m| 19/80 [04:39<14:51, 14.61s/ep, best_f1=0.017, f1=0.017, src=raw, t[0m  Fold 5 train:  24%|[36m▏[0m| 19/80 [04:53<14:51, 14.61s/ep, best_f1=0.017, f1=0.014, src=raw, t[0m  Fold 5 train:  25%|[36m▎[0m| 20/80 [04:53<14:34, 14.58s/ep, best_f1=0.017, f1=0.014, src=raw, t[0m  Fold 5 train:  25%|[36m▎[0m| 20/80 [05:08<14:34, 14.58s/ep, best_f1=0.017, f1=0.013, src=raw, t[0m  Fold 5 train:  26%|[36m▎[0m| 21/80 [05:08<14:18, 14.54s/ep, best_f1=0.017, f1=0.013, src=raw, t[0m  Fold 5 train:  26%|[36m▎[0m| 21/80 [05:22<14:18, 14.54s/ep, best_f1=0.017, f1=0.009, src=raw, t[0m  Fold 5 train:  28%|[36m▎[0m| 22/80 [05:22<14:02, 14.52s/ep, best_f1=0.017, f1=0.009, src=raw, t[0m  Fold 5 train:  28%|[36m▎[0m| 22/80 [05:37<14:02, 14.52s/ep, best_f1=0.019, f1=0.019, src=ema, t[0m  Fold 5 train:  29%|[36m▎[0m| 23/80 [05:37<13:52, 14.60s/ep, best_f1=0.019, f1=0.019, src=ema, t[0m  Fold 5 train:  29%|[36m▎[0m| 23/80 [05:52<13:52, 14.60s/ep, best_f1=0.019, f1=0.019, src=ema, t[0m  Fold 5 train:  30%|[36m▎[0m| 24/80 [05:52<13:48, 14.79s/ep, best_f1=0.019, f1=0.019, src=ema, t[0m  Fold 5 train:  30%|[36m▎[0m| 24/80 [06:07<13:48, 14.79s/ep, best_f1=0.019, f1=0.013, src=ema, t[0m  Fold 5 train:  31%|[36m▎[0m| 25/80 [06:07<13:43, 14.97s/ep, best_f1=0.019, f1=0.013, src=ema, t[0m  Fold 5 train:  31%|[36m▎[0m| 25/80 [06:23<13:43, 14.97s/ep, best_f1=0.019, f1=0.013, src=ema, t[0m  Fold 5 train:  32%|[36m▎[0m| 26/80 [06:23<13:30, 15.02s/ep, best_f1=0.019, f1=0.013, src=ema, t[0m  Fold 5 train:  32%|[36m▎[0m| 26/80 [06:38<13:30, 15.02s/ep, best_f1=0.019, f1=0.012, src=ema, t[0m  Fold 5 train:  34%|[36m▎[0m| 27/80 [06:38<13:17, 15.04s/ep, best_f1=0.019, f1=0.012, src=ema, t[0m  Fold 5 train:  34%|[36m▎[0m| 27/80 [06:53<13:17, 15.04s/ep, best_f1=0.019, f1=0.011, src=ema, t[0m  Fold 5 train:  35%|[36m▎[0m| 28/80 [06:53<13:03, 15.06s/ep, best_f1=0.019, f1=0.011, src=ema, t[0m  Fold 5 train:  35%|[36m▎[0m| 28/80 [07:08<13:03, 15.06s/ep, best_f1=0.019, f1=0.009, src=ema, t[0m  Fold 5 train:  36%|[36m▎[0m| 29/80 [07:08<12:49, 15.08s/ep, best_f1=0.019, f1=0.009, src=ema, t[0m  Fold 5 train:  36%|[36m▎[0m| 29/80 [07:23<12:49, 15.08s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  38%|[36m▍[0m| 30/80 [07:23<12:36, 15.13s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  38%|[36m▍[0m| 30/80 [07:38<12:36, 15.13s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  39%|[36m▍[0m| 31/80 [07:38<12:24, 15.19s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  39%|[36m▍[0m| 31/80 [07:54<12:24, 15.19s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  40%|[36m▍[0m| 32/80 [07:54<12:07, 15.15s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  40%|[36m▍[0m| 32/80 [08:09<12:07, 15.15s/ep, best_f1=0.019, f1=0.010, src=ema, t[0m  Fold 5 train:  41%|[36m▍[0m| 33/80 [08:09<11:53, 15.17s/ep, best_f1=0.019, f1=0.010, src=ema, t[0m  Fold 5 train:  41%|[36m▍[0m| 33/80 [08:24<11:53, 15.17s/ep, best_f1=0.019, f1=0.007, src=ema, t[0m  Fold 5 train:  42%|[36m▍[0m| 34/80 [08:24<11:39, 15.21s/ep, best_f1=0.019, f1=0.007, src=ema, t[0m  Fold 5 train:  42%|[36m▍[0m| 34/80 [08:39<11:39, 15.21s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  44%|[36m▍[0m| 35/80 [08:39<11:14, 15.00s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  44%|[36m▍[0m| 35/80 [08:53<11:14, 15.00s/ep, best_f1=0.019, f1=0.009, src=ema, t[0m  Fold 5 train:  45%|[36m▍[0m| 36/80 [08:53<10:53, 14.84s/ep, best_f1=0.019, f1=0.009, src=ema, t[0m  Fold 5 train:  45%|[36m▍[0m| 36/80 [09:08<10:53, 14.84s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  46%|[36m▍[0m| 37/80 [09:08<10:33, 14.74s/ep, best_f1=0.019, f1=0.008, src=ema, t[0m  Fold 5 train:  46%|[36m▍[0m| 37/80 [09:22<10:33, 14.74s/ep, best_f1=0.019, f1=0.007, src=ema, t[0m                                                                                            Fold 5 train:  46%|[36m▍[0m| 37/80 [09:22<10:33, 14.74s/ep, best_f1=0.019, f1=0.007, src=ema, t[0m                                                                                            Early stop at epoch 38 (no macro-F1 gain in 15 epochs; best from 'ema')
+
+  Fold 5 metrics (chance top-1 = 0.028, 324 recordings):
+    top-1 (recording): 0.040
+    balanced acc     : 0.040
+    macro-F1         : 0.019  (selection metric)
+    top-5            : 0.145  (chance = 0.139)
+    checkpoint src   : ema weights
+                precision    recall  f1-score   support
+
+            ax      0.000     0.000     0.000         9
+          bear      0.049     0.222     0.080         9
+ bottle_opener      0.000     0.000     0.000         9
+         broom      0.154     0.222     0.182         9
+           cat      0.071     0.111     0.087         9
+     chain_saw      0.000     0.000     0.000         9
+          cock      0.000     0.000     0.000         9
+computer_mouse      0.167     0.111     0.133         9
+     corkscrew      0.000     0.000     0.000         9
+           cow      0.000     0.000     0.000         9
+          crab      0.000     0.000     0.000         9
+          crow      0.000     0.000     0.000         9
+           dog      0.000     0.000     0.000         9
+        donkey      0.033     0.111     0.051         9
+          duck      0.000     0.000     0.000         9
+     elephants      0.000     0.000     0.000         9
+          frog      0.000     0.000     0.000         9
+        hammer      0.000     0.000     0.000         9
+      hand_saw      0.000     0.000     0.000         9
+        kettle      0.000     0.000     0.000         9
+      keyboard      0.000     0.000     0.000         9
+         knife      0.000     0.000     0.000         9
+          lion      0.000     0.000     0.000         9
+     microwave      0.000     0.000     0.000         9
+        monkey      0.000     0.000     0.000         9
+           owl      0.000     0.000     0.000         9
+           pen      0.000     0.000     0.000         9
+         phone      0.035     0.333     0.064         9
+           pig      0.000     0.000     0.000         9
+      scissors      0.000     0.000     0.000         9
+         sheep      0.031     0.111     0.049         9
+        shovel      0.000     0.000     0.000         9
+         snake      0.027     0.222     0.048         9
+         tiger      0.000     0.000     0.000         9
+    toothbrash      0.000     0.000     0.000         9
+vacuum_cleaner      0.000     0.000     0.000         9
+
+      accuracy                          0.040       324
+     macro avg      0.016     0.040     0.019       324
+  weighted avg      0.016     0.040     0.019       324
+
+  [PLOT] Saved numa_plots_v6/fold5_training_curves.png
+  [PLOT] Saved numa_plots_v6/fold5_confusion_matrix.png
+  Checkpoint → numa_v6_fold5.pt
+
+============================================================
+  Cross-Validation Summary (recording-level, selection = macro-F1)
+============================================================
+  Fold      top1   balAcc     mF1    top5
+  ---------------------------------------
+  1        0.034    0.034   0.015   0.142
+  2        0.040    0.040   0.023   0.139
+  3        0.034    0.034   0.017   0.130
+  4        0.034    0.034   0.017   0.151
+  5        0.040    0.040   0.019   0.145
+  ---------------------------------------
+  mean     0.036    0.036   0.018   0.141
+  std      0.003    0.003   0.003   0.007
+  Chance top-1 = 0.028 | chance top-5 = 0.139
+============================================================
+  [PLOT] Saved numa_plots_v6/cv_summary.png
+
+============================================================
+  Per-Class Accuracy (pooled, recording-level)
+============================================================
+  Stimulus                          Correct / Total   Acc
+  broom                               10 / 45          0.222  ████
+  hand_saw                             5 / 45          0.111  ██
+  ax                                   4 / 45          0.089  █
+  bear                                 4 / 45          0.089  █
+  computer_mouse                       4 / 45          0.089  █
+  phone                                4 / 45          0.089  █
+  vacuum_cleaner                       4 / 45          0.089  █
+  cat                                  3 / 45          0.067  █
+  crow                                 3 / 45          0.067  █
+  sheep                                3 / 45          0.067  █
+  snake                                3 / 45          0.067  █
+  donkey                               2 / 45          0.044  
+  duck                                 2 / 45          0.044  
+  bottle_opener                        1 / 45          0.022  
+  cock                                 1 / 45          0.022  
+  cow                                  1 / 45          0.022  
+  elephants                            1 / 45          0.022  
+  keyboard                             1 / 45          0.022  
+  owl                                  1 / 45          0.022  
+  pig                                  1 / 45          0.022  
+  shovel                               1 / 45          0.022  
+  chain_saw                            0 / 45          0.000  
+  corkscrew                            0 / 45          0.000  
+  crab                                 0 / 45          0.000  
+  dog                                  0 / 45          0.000  
+  frog                                 0 / 45          0.000  
+  hammer                               0 / 45          0.000  
+  kettle                               0 / 45          0.000  
+  knife                                0 / 45          0.000  
+  lion                                 0 / 45          0.000  
+  microwave                            0 / 45          0.000  
+  monkey                               0 / 45          0.000  
+  pen                                  0 / 45          0.000  
+  scissors                             0 / 45          0.000  
+  tiger                                0 / 45          0.000  
+  toothbrash                           0 / 45          0.000  
+  OVERALL                             59 / 1620        0.036
+============================================================

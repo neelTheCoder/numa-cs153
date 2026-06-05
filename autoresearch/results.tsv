@@ -1,0 +1,27 @@
+commit	val_balanced_acc	val_top1	val_macro_f1	status	description
+cd6a8fe	?	?	?	keep	BALANCE=both (sampler + class-weighted CE)
+9c2f1c1	?	?	?	keep	MAX_LR=3e-3 (LR sweep up)
+3779f76	?	?	?	keep	DROPOUT_P=0.3 (reduce regularization)
+b425158	0.0370	?	?	keep	GCN residual skip (gcn2+gcn1) — confirmed best
+d187fee	0.0351	0.0317	0.0085	discard	GCN_DIM=96, EMBED_DIM=192 (capacity bump — no gain)
+ccb1da2	0.0344	0.0314	0.0071	discard	WEIGHT_DECAY=0.01 (less L2 — no gain)
+4a90652	0.0361	0.0326	0.0093	discard	temporal kernel=(1,64) wider receptive field
+7f9c1c0	0.0335	0.0308	0.0060	discard	BATCH_SIZE=64 (smaller batches — no gain)
+302cf66	0.0340	0.0975	0.0111	discard	attention pooling over electrodes (class collapse, top1 inflated)
+d5c33fe	0.0345	0.0317	0.0111	discard	ADJ_THRESHOLD=0.3 (sparser graph — no gain)
+76647fc	0.0348	0.0318	0.0068	discard	3rd GCN layer with residual (overfitting)
+c16884f	0.0344	0.0312	0.0081	discard	input Gaussian noise augmentation
+3ceeb76	0.0367	0.0331	0.0083	discard	DROPOUT_P=0.2 (near-best but below 0.0370)
+ee5ff3c	0.0366	0.0506	0.0169	discard	remove Dropout2d(0.25) from temporal conv (better F1 but below best)
+75eada4	0.0331	0.0306	0.0093	discard	LABEL_SMOOTH=0.05 (no gain)
+1ec210d	0.0340	0.0314	0.0115	discard	EEGNet F1=8 D=2 (7K params, too small)
+1927f91	0.0351	0.0320	0.0101	discard	DROPOUT_P=0.2+no Dropout2d combined
+45d7208	0.0345	0.0321	0.0109	discard	MAX_LR=5e-3 (LR too high)
+809e9f6	0.0336	0.0306	0.0094	discard	EMBED_DIM=64 (smaller embed — no gain)
+5dffab1	0.0341	0.0308	0.0123	discard	temporal AvgPool stride=8 (more compression)
+b603f76	0.0336	0.0932	0.0138	discard	GCN_DIM=48 (class collapse)
+e0c9734	0.0329	0.0295	0.0062	discard	global temporal mean pool (too lossy)
+b5f61fe	0.0325	0.0295	0.0095	discard	mixup augmentation (no gain)
+af41ea1	0.0363	0.0332	0.0101	discard	ADJ_THRESHOLD=0.5 (denser graph — near miss)
+540ef9b	0.0352	0.0321	0.0070	discard	WARMUP_FRAC=0.05 (shorter warmup)
+bfca25c	0.0339	0.0308	0.0070	discard	random temporal shift augmentation (roll ±20)

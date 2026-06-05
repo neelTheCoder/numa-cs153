@@ -1,0 +1,146 @@
+{
+  "ax": {
+    "category": "tools",
+    "src": "pictures/tools/ax_PNG9104.png"
+  },
+  "bear": {
+    "category": "animals",
+    "src": "pictures/animals/bear_PNG23456.png"
+  },
+  "bottle_opener": {
+    "category": "tools",
+    "src": "pictures/tools/bottle_opener_PNG24.png"
+  },
+  "broom": {
+    "category": "tools",
+    "src": "pictures/tools/broom_PNG58.png"
+  },
+  "cat": {
+    "category": "animals",
+    "src": "pictures/animals/cat_PNG50520.png"
+  },
+  "chain_saw": {
+    "category": "tools",
+    "src": "pictures/tools/chain_saw_PNG18513.png"
+  },
+  "cock": {
+    "category": "animals",
+    "src": "pictures/animals/cock_PNG21.png"
+  },
+  "computer_mouse": {
+    "category": "tools",
+    "src": "pictures/tools/computer_mouse_PNG7688.png"
+  },
+  "corkscrew": {
+    "category": "tools",
+    "src": "pictures/tools/corkscrew_PNG43.png"
+  },
+  "cow": {
+    "category": "animals",
+    "src": "pictures/animals/cow_PNG50606.png"
+  },
+  "crab": {
+    "category": "animals",
+    "src": "pictures/animals/crab_PNG37.png"
+  },
+  "crow": {
+    "category": "animals",
+    "src": "pictures/animals/crow_PNG3114.png"
+  },
+  "dog": {
+    "category": "animals",
+    "src": "pictures/animals/dog_PNG50396.png"
+  },
+  "donkey": {
+    "category": "animals",
+    "src": "pictures/animals/donkey_PNG7.png"
+  },
+  "duck": {
+    "category": "animals",
+    "src": "pictures/animals/duck_PNG5028.png"
+  },
+  "elephants": {
+    "category": "animals",
+    "src": "pictures/animals/elephants_PNG18808.png"
+  },
+  "frog": {
+    "category": "animals",
+    "src": "pictures/animals/frog_PNG35767.png"
+  },
+  "hammer": {
+    "category": "tools",
+    "src": "pictures/tools/hammer_PNG1133.png"
+  },
+  "hand_saw": {
+    "category": "tools",
+    "src": "pictures/tools/hand_saw_PNG9540.png"
+  },
+  "kettle": {
+    "category": "tools",
+    "src": "pictures/tools/kettle_PNG8692.png"
+  },
+  "keyboard": {
+    "category": "tools",
+    "src": "pictures/tools/keyboard_PNG5858.png"
+  },
+  "knife": {
+    "category": "tools",
+    "src": "pictures/tools/knife_PNG1516.png"
+  },
+  "lion": {
+    "category": "animals",
+    "src": "pictures/animals/lion_PNG562.png"
+  },
+  "microwave": {
+    "category": "tools",
+    "src": "pictures/tools/microwave_PNG15726.png"
+  },
+  "monkey": {
+    "category": "animals",
+    "src": "pictures/animals/monkey_PNG18716.png"
+  },
+  "owl": {
+    "category": "animals",
+    "src": "pictures/animals/owl_PNG26.png"
+  },
+  "pen": {
+    "category": "tools",
+    "src": "pictures/tools/pen_PNG7418.png"
+  },
+  "phone": {
+    "category": "tools",
+    "src": "pictures/tools/phone_PNG48887.png"
+  },
+  "pig": {
+    "category": "animals",
+    "src": "pictures/animals/pig_PNG2215.png"
+  },
+  "scissors": {
+    "category": "tools",
+    "src": "pictures/tools/scissors_PNG28.png"
+  },
+  "sheep": {
+    "category": "animals",
+    "src": "pictures/animals/sheep_PNG2718.png"
+  },
+  "shovel": {
+    "category": "tools",
+    "src": "pictures/tools/shovel_PNG7598.png"
+  },
+  "snake": {
+    "category": "animals",
+    "src": "pictures/animals/snake_PNG4053.png"
+  },
+  "tiger": {
+    "category": "animals",
+    "src": "pictures/animals/tiger_PNG23242.png"
+  },
+  "toothbrash": {
+    "category": "tools",
+    "src": "pictures/tools/toothbrash_PNG10557.png"
+  },
+  "vacuum_cleaner": {
+    "category": "tools",
+    "src": "pictures/tools/vacuum_cleaner_PNG56.png"
+  }
+}
