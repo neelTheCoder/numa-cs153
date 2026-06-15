@@ -17,6 +17,8 @@ CS 153 — *The One-Person Frontier Lab.* Track: **Research / Domain-Specific (n
 
 ---
 
+![Alternative Text Description](image-1781552358300.png)
+
 ## 1. The problem
 
 Non-invasive brain–computer interfaces (BCIs) are bottlenecked by **signal-to-noise
